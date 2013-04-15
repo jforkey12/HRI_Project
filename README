@@ -1,0 +1,46 @@
+////////////////////////////////////////////////////////////
+///
+/// README FILE
+/// 
+////////////////////////////////////////////////////////////
+
+To run:
+
+Start roscore:
+roscore &
+
+build:
+../gradlew installApp
+
+launch Server node
+./build/install/rosjava_tutorial_services/bin/rosjava_tutorial_services rosdisco.Server &
+
+launch Client node
+./build/install/rosjava_tutorial_services/bin/rosjava_tutorial_services rosdisco.Client &
+
+
+
+Rosjava uses gradle for its build system.  See build.gradle to edit build configurations.
+
+The instance of disco is invoked from the Client node.  Requests are sent from Disco to the
+server, where they are interpreted by the robot, then a response is issued on completion.
+
+To duplicate the build tree from disco command line:
+eval Packages.rosdisco.duplicate();
+
+To build XML file, invoke the main method of the BuildXML class:
+eval Packages.rosdisco.BuildXML.main(null);
+
+////////////////////////////////////////////////////////////
+///
+/// IN PROGRESS
+///
+////////////////////////////////////////////////////////////
+To write the current tree out to an XML file from disco command line:
+eval Packages.rosdisco.BuildXML();
+
+Fix writing to file on BUILDXML
+Generalize requests
+Add blocking to requests
+Generalize DOM
+Remove utterances

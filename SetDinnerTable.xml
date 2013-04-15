@@ -1,0 +1,95 @@
+<taskModel about="urn:disco.wpi.edu:examples:SetDinnerTable" xmlns="http://ce.org/cea-2018">
+
+  <task id="SetDinnerTable">
+  
+    <subtasks id="setting">
+      <step name="cloth" task="SetCloth"/>
+      <step name="place" task="SetPlace" minOccurs="4" maxOccurs="4"/>
+    </subtasks>
+
+  </task>
+  
+  <task id="SetCloth">
+    <output name="state" type="string" />
+    <postcondition sufficient="true"> $this.state != false </postcondition>
+    <script>
+	var cloth = "SetCloth()";
+        org.ros.rosjava_tutorial_pubsub.Talker.setMessage(cloth);
+	<!-- edu.wpi.lfd.BuildPlan.newPlan(); -->
+	$this.state = org.ros.rosjava_tutorial_pubsub.Listener.getStatus();
+	println($this.state);
+	
+	<!-- var cloth = new Packages.org.ros.rosjava_tutorial_pubsub.Talker();
+	Packages.org.ros.rosjava_tutorial_pubsub.Talker.setMessage(cloth);
+	importPackage(Packages.org.ros.rosjava_tutorial_pubsub);
+	 Packages.org.ros.rosjava_tutorial_pubsub.Talker.message(cloth);
+	Packages.org.ros.rosjava_tutorial_pubsub.Talker.std_msgs.strCloth.setData("Executing SetCloth");
+        Packages.org.ros.rosjava.Talker.publisher.publish(strCloth); </script> -->
+    <!--<script> Packages.edu.wpi.lfd.ROSWrapper.call("SetCloth"); --> </script>
+  </task>
+
+  <task id="SetPlace">
+      <subtasks id="setplace" ordered="false">
+      <step name="plate" task="SetPlate"/>
+      <step name="napkin" task="SetNapkin" requires="plate"/>
+      <step name="glass" task="SetGlass" requires="plate"/>
+      <step name="silverware" task="SetSilverware" requires="napkin"/>
+    </subtasks>
+    
+  </task>    
+ 
+  <task id="SetSilverware">
+    <subtasks id="setSilverware">
+    <step name="spoon" task="SetSpoon"/>
+    <step name="fork" task="SetFork"/>
+    <step name="knife" task="SetKnife"/>
+    </subtasks>
+  </task>
+
+  <task id="SetPlate">
+    <script> 
+    var plate ="SetPlate()";
+    org.ros.rosjava_tutorial_pubsub.Talker.setMessage(plate);
+    </script>
+   
+  </task>
+  
+  <task id="SetGlass">
+  </task>
+
+  <task id="SetNapkin">
+    <script> 
+    var napkin ="SetNapkin()";
+    org.ros.rosjava_tutorial_pubsub.Talker.setMessage(napkin);
+    </script>
+  </task>
+
+  <task id="SetFork">
+    <script>
+    var fork = "SetFork()";
+    org.ros.rosjava_tutorial_pubsub.Talker.setMessage(fork);
+    </script>
+  </task>
+
+  <task id="SetKnife">
+    <script> 
+    var knife ="SetKnife()";
+    org.ros.rosjava_tutorial_pubsub.Talker.setMessage(knife);
+    </script>
+  </task>
+  
+  <task id="SetSpoon">
+    <script> 
+    var spoon ="SetSpoon()";
+    org.ros.rosjava_tutorial_pubsub.Talker.setMessage(spoon);
+    </script>
+  </task>
+
+  <task id="SetFlowers">
+    <script> 
+    var flowers ="SetFlowers()";
+    org.ros.rosjava_tutorial_pubsub.Talker.setMessage(flowers);
+    </script>
+  </task>
+
+</taskModel>
