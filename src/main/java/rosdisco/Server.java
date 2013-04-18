@@ -14,8 +14,6 @@ import org.ros.node.service.ServiceResponseBuilder;
 import org.ros.node.service.ServiceServer;
 
 public class Server extends AbstractNodeMain {
-public boolean newMsg;
-public String responseMsg;
 	
   @Override
   public GraphName getDefaultNodeName() {
@@ -29,18 +27,13 @@ public String responseMsg;
     	@Override
           public void
              build(rosd_messages.RosDRequest request, rosd_messages.RosDResponse response) {
-    		System.out.println("START OF BUILD MESSAGE");
+    		System.out.println("DEBUG: START OF BUILD MESSAGE");
     		try {
-    			System.out.println("SLEEP TO SIMULATE ROBOT MOVEMENT");
+    			System.out.println("DEBUG: SLEEP TO SIMULATE ROBOT MOVEMENT");
     			  Thread.sleep(10000);
-    			  System.out.println("BEFORE SETTING RESPONSE MESSAGE");
+    			  System.out.println("DEBUG: BEFORE SETTING RESPONSE MESSAGE");
             	  response.setResponseMessage( 123/*request.getTask()*/);
-            	  System.out.println("AFTER SETTING RESPONSE MESSAGE");
-            	  
-            	  synchronized (Client.thread1){
-            		  notifyAll();
-            	  }
-            	  System.out.println("AFTER NOTIFYALL ");
+            	  System.out.println("DEBUG: AFTER SETTING RESPONSE MESSAGE");
               }
               catch (Exception e){}
           } 
