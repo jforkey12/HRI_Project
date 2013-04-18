@@ -10,7 +10,7 @@
 	var cloth = "SetCloth()";
     var rosd = "rosdisco";
     Packages.rosdisco.Client.test(cloth);
-    Packages.rosdisco.BuildXML.main(null);
+    <!-- Packages.rosdisco.BuildXML.main(null); -->
 	<!-- edu.wpi.lfd.BuildPlan.newPlan();
 	$this.state = org.ros.rosjava_tutorial_pubsub.Listener.getStatus();
 	println($this.state); -->
