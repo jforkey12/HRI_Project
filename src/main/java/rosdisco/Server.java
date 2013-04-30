@@ -15,7 +15,7 @@ import org.ros.node.service.ServiceServer;
 import java.io.IOException;
 
 public class Server extends AbstractNodeMain {
-	
+	public long responseNum;
   @Override
   public GraphName getDefaultNodeName() {
     return GraphName.of("rosdisco_services/server");
@@ -29,9 +29,9 @@ public class Server extends AbstractNodeMain {
           public void build(rosd_messages.RosDRequest request, rosd_messages.RosDResponse response) {
     		System.out.println("DEBUG: START OF BUILD MESSAGE");
 		String command = buildCommand(request.getTask());
-            long responseNum = 0;
+            responseNum = 0;
     		try {
-    			System.out.println("DEBUG: SLEEP TO SIMULATE ROBOT MOVEMENT");
+    			System.out.println("DEBUG:ROBOT MOVEMENT");
 			if(!command.equals("")) {
 				executeCommand(command);
 
@@ -60,14 +60,32 @@ public class Server extends AbstractNodeMain {
 		else if(line.equalsIgnoreCase("SetNapkin()")) {
 			System.out.println("Setting Napkin.. robot moves forward...");
 			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 2.0 0.0";
-
 		}
 		else if(line.equalsIgnoreCase("SetCloth()")) {
-			System.out.println("Setting cloth...Robot moves in a circle...");
-			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 5.0 3.8";
+			System.out.println("Setting cloth...Robot moves in a counter-clockwise circle...");
+			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 10.0 6.8";
 		}
-		
-		else if(line.equalsIgnoreCase("quit")) {
+		else if(line.equalsIgnoreCase("SetPlate()")) {
+			System.out.println("Setting plate...Robot moves in a clockwise circle...");
+			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 10.0 -6.8";
+		}
+		else if(line.equalsIgnoreCase("SetFork()")) {
+			System.out.println("Setting fork...Robot turns clockwise...");
+			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 0.0 -2.0";
+		}
+		else if(line.equalsIgnoreCase("SetKnife()")) {
+			System.out.println("Setting knife...Robot moves forward...");
+			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 2.0 0.0";
+		}
+		else if(line.equalsIgnoreCase("SetSpoon()")) {
+			System.out.println("Setting spoon...Robot turns clockwise...");
+			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- 0.0 -2.0";
+		}
+		else if(line.equalsIgnoreCase("SetGlass()")) {
+			System.out.println("Setting glass...Robot moves backwards...");
+			command = "rostopic pub /turtle1/command_velocity turtlesim/Velocity -- -2.0 0.0";
+		}
+		else if(line.equalsIgnoreCase("SetFlowers()")) {
 			System.out.println("quitting...");
 			return "";	
 		}

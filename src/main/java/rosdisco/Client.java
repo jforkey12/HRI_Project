@@ -51,7 +51,7 @@ static Thread thread1 = new Thread(){
       
     }
   	//the method disco calls to send new requests
-	public static void test(String str){
+	public static void buildRequest(String str){
 		
 		final rosd_messages.RosDRequest req;
 		req = node1.getServiceRequestMessageFactory().newFromType(rosd_messages.RosD._TYPE);

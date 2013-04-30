@@ -12,35 +12,52 @@ roscore &
 build:
 ../gradlew installApp
 
+launch Turtlebot Simulator
+rosrun turtlesim turtlesim_node &
+
 launch Server node
 ./build/install/rosjava_tutorial_services/bin/rosjava_tutorial_services rosdisco.Server &
+
 
 launch Client node
 ./build/install/rosjava_tutorial_services/bin/rosjava_tutorial_services rosdisco.Client &
 
 
-
 Rosjava uses gradle for its build system.  See build.gradle to edit build configurations.
 
 The instance of disco is invoked from the Client node.  Requests are sent from Disco to the
-server, where they are interpreted by the robot, then a response is issued on completion.
+server, where they are interpreted (forwarded) to the robot, then a response is issued on completion.
 
 To duplicate the build tree from disco command line:
-eval Packages.rosdisco.duplicate();
+eval Packages.rosdisco.Imitate.duplicate();
 
 To build XML file, invoke the main method of the BuildXML class:
 eval Packages.rosdisco.BuildXML.main(null);
 
-////////////////////////////////////////////////////////////
-///
-/// IN PROGRESS
-///
-////////////////////////////////////////////////////////////
-To write the current tree out to an XML file from disco command line:
-eval Packages.rosdisco.BuildXML();
+git repo:
+http://github.com/jforkey12/HRI_Project
 
+////////////////////////////////////////////////////////////
+///
+/// Requirements
+///
+////////////////////////////////////////////////////////////
+Ubuntu 12.04 Precise LTS
+Java 1.7
+ROS Groovy Galapagos 1.8.6
+ROSJava core (with gradle)
+Gradle 1.5
+Gazebo 1.6 (Not used)
+Turtle Sim (Downloaded with ROS)
+
+////////////////////////////////////////////////////////////
+///
+/// @TODO
+///
+////////////////////////////////////////////////////////////
 Fix writing to file on BUILDXML
-Generalize requests
-Add blocking to requests
 Generalize DOM
 Remove utterances
+Add functioning non-primitive tasks
+Switch messages issued to the robot from shell commands to published messages
+Add blocking to server

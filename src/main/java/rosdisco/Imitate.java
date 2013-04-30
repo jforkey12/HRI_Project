@@ -25,26 +25,26 @@ public class Imitate {
   }
    
   public static void duplicate () {
+	  
+	  Iterator<Plan> top = disco.tops();
+	  disco.clear();
 	 boolean rootFlag = true;
-	 
-	for (Iterator<Plan> top = disco.tops(); top.hasNext();)
+	while (top.hasNext())
 	{
-
+		System.out.println("DEBUG: getting next plan top.next()");
 		Plan newRoot = top.next();
 		Plan tplan = new Plan(newRoot.getGoal().getType().newInstance());
 		
 		//get children and add them to a new plan
-		System.out.println("getting next plan top.next()");
-		System.out.println("adding plan to top of current instance of disco" + tplan);
-		System.out.println("is this the top node? :" + disco.isTop(tplan));
+		System.out.println("DEBUG: is this the top node? :" + disco.isTop(tplan));
+		System.out.println("DEBUG: adding plan to top of current instance of disco" + tplan);
 		tplan.getGoal().setExternal(false);
 		disco.addTop(tplan);
-		System.out.println("ADDED newROOT" + tplan);
+		System.out.println("DEBUG: ADDED newROOT" + tplan);
 		top.remove();
-		System.out.println("REMOVED" + tplan);
+		System.out.println("DEBUG: REMOVED" + tplan);
 	}
-   }
-
+  }
    private void agent () {
       // see simple model for agent turn at
       // {@link Agent#respond(Interaction,boolean,boolean)}
